@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Guía del Trabajo – Investigación Acción Participativa (Unidades 1 y 2)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root { color-scheme: light dark; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.5;
+            background: #f3f3f3;
+            color: #222;
+        }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 1.5rem 1.5rem 3rem;
+        }
+
+        /* Barra superior de navegación */
+        .top-nav {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: #222;
+            color: #fff;
+            padding: 0.4rem 0.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            justify-content: center;
+        }
+        .top-nav button {
+            border: none;
+            padding: 0.25rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            background: #ffffff;
+            color: #222;
+            transition: background 0.2s, transform 0.1s;
+            white-space: nowrap;
+        }
+        .top-nav button:hover {
+            background: #ddd;
+            transform: translateY(-1px);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            text-align: center;
+            margin-top: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        h2 {
+            font-size: 1.4rem;
+            margin-top: 1.8rem;
+            border-left: 4px solid #444;
+            padding-left: 0.7rem;
+        }
+        h3 { font-size: 1.15rem; margin-top: 1.2rem; }
+        h4 { font-size: 1rem; margin-top: 0.9rem; }
+
+        p {
+            text-align: justify;
+            margin: 0.4rem 0 0.7rem;
+        }
+        ul { margin: 0.3rem 0 0.7rem 1.3rem; }
+        li { margin-bottom: 0.15rem; }
+
+        .note {
+            background: #f9f9f9;
+            border-left: 4px solid #555;
+            padding: 0.8rem 0.9rem;
+            margin: 0.8rem 0 1.2rem;
+            font-size: 0.95rem;
+        }
+
+        /* Bloques desplegables */
+        .toggle-block {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 0.7rem 0.8rem;
+            margin: 0.6rem 0 0.8rem;
+            background: #fafafa;
+        }
+        .toggle-block-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .toggle-block-header h2,
+        .toggle-block-header h3 {
+            margin: 0;
+        }
+        .toggle-btn {
+            border: 1px solid #666;
+            background: #fff;
+            padding: 0.25rem 0.6rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+        .toggle-btn:hover {
+            background: #eee;
+        }
+        .hidden { display: none; }
+
+        /* Tablas y matrices */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0.8rem 0 1.2rem;
+            font-size: 0.95rem;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 0.4rem 0.45rem;
+            vertical-align: top;
+        }
+
+        .matrix-title {
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        .matrix {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 0.4rem;
+        }
+        .matrix th, .matrix td {
+            border: 1px solid #000;
+            padding: 0.3rem 0.4rem;
+            font-size: 0.9rem;
+            vertical-align: top;
+        }
+        .matrix-top {
+            text-align: center;
+            font-weight: bold;
+        }
+        .matrix-bottom {
+            text-align: center;
+            font-weight: bold;
+            height: 2.1rem;
+        }
+        .matrix-side {
+            text-align: center;
+            width: 2.8rem;
+        }
+        .matrix-side span {
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            display: inline-block;
+            font-weight: bold;
+        }
+        .matrix-cell-title {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        .matrix ul {
+            margin: 0.2rem 0 0.2rem 1rem;
+        }
+
+        /* Videos */
+        .video-section {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: #f7f7f7;
+            border-radius: 4px;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            margin-bottom: 0.8rem;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .small { font-size: 0.9rem; }
+
+        .links-list a { color: #004a7f; }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background: #111;
+                color: #f5f5f5;
+            }
+            .page { background: #1b1b1b; }
+            .note,
+            .toggle-block,
+            .video-section {
+                background: #262626;
+                border-color: #555;
+            }
+            th, td { border-color: #666; }
+            .matrix th, .matrix td { border-color: #999; }
+        }
+    </style>
+</head>
+<body>
+<div class="top-nav">
+    <button onclick="goToSection('intro')">Inicio</button>
+    <button onclick="goToSection('ambito')">1. Ámbito</button>
+    <button onclick="goToSection('focales')">2. Grupos focales</button>
+    <button onclick="goToSection('dafo')">3. Matriz DAFO</button>
+    <button onclick="goToSection('came')">4. Matriz CAME</button>
+    <button onclick="goToSection('videos')">Videos</button>
+    <button onclick="goToSection('recursos')">Lecturas</button>
+</div>
+
+<div class="page">
+    <h1>Guía del trabajo de las Unidades 1 y 2<br>Investigación Acción Participativa (IAP)</h1>
+
+    <!-- INTRO -->
+    <section id="intro">
+        <div class="toggle-block">
+            <div class="toggle-block-header">
+                <h2>Presentación general del trabajo</h2>
+                <button class="toggle-btn" onclick="toggleBlock('intro-contenido')">Mostrar / Ocultar</button>
+            </div>
+            <div id="intro-contenido" class="hidden">
+                <div class="note">
+                    El trabajo tiene como propósito que el estudiantado aplique el enfoque de Investigación
+                    Acción Participativa (IAP) a una problemática concreta, construyendo un diagnóstico
+                    colectivo (matriz DAFO) y un conjunto de estrategias (matriz CAME) coherentes con la
+                    realidad de una comunidad específica.
+                </div>
+                <p>
+                    La guía se organiza en cuatro componentes:
+                    definición del ámbito de investigación, diseño de grupos focales, construcción de la matriz
+                    DAFO y formulación de estrategias mediante la matriz CAME. Cada sección incluye orientaciones,
+                    modelos de tablas y ejemplos ilustrativos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. ÁMBITO -->
+    <section id="ambito">
+        <div class="toggle-block">
+            <div class="toggle-block-header">
+                <h2>1) Definición del ámbito de investigación</h2>
+                <button class="toggle-btn" onclick="toggleBlock('ambito-contenido')">Mostrar / Ocultar</button>
+            </div>
+            <div id="ambito-contenido" class="hidden">
+                <p>
+                    En esta sección se delimita el <strong>tema</strong> y la <strong>comunidad</strong>
+                    donde se desarrollará el proceso de IAP. La investigación debe abordar problemas
+                    sociales colectivos y susceptibles de transformación, en los que los propios actores
+                    tengan posibilidad de intervenir.
+                </p>
+
+                <h3>Ejemplos de ámbitos posibles</h3>
+                <ul>
+                    <li>Deserción escolar en zonas rurales del altiplano potosino.</li>
+                    <li>Contaminación del río Rocha y su impacto en la salud barrial en Cochabamba.</li>
+                    <li>Conflictos de tierra en comunidades indígenas del oriente.</li>
+                    <li>Violencia de género en mercados municipales de La Paz.</li>
+                    <li>Inseguridad alimentaria en barrios periurbanos de Tarija.</li>
+                </ul>
+
+                <h3>Elementos que debe incluir el texto</h3>
+                <ul>
+                    <li>
+                        <strong>Descripción de la comunidad:</strong> ubicación, características socioculturales,
+                        actores relevantes.
+                    </li>
+                    <li>
+                        <strong>Formulación del problema:</strong> enunciado claro y acotado de la situación
+                        que se pretende abordar.
+                    </li>
+                    <li>
+                        <strong>Justificación:</strong> argumentos que explican la relevancia social y académica
+                        del tema, y la pertinencia de un enfoque participativo.
+                    </li>
+                    <li>
+                        <strong>Contexto general:</strong> breve referencia al entorno territorial, económico,
+                        político o institucional que condiciona la problemática.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. GRUPOS FOCALES -->
+    <section id="focales">
+        <div class="toggle-block">
+            <div class="toggle-block-header">
+                <h2>2) Grupos focales para la negociación inicial de objetivos</h2>
+                <button class="toggle-btn" onclick="toggleBlock('focales-contenido')">Mostrar / Ocultar</button>
+            </div>
+            <div id="focales-contenido" class="hidden">
+                <p>
+                    Los grupos focales se utilizan para generar un espacio de diálogo entre actores
+                    vinculados al problema, identificar percepciones compartidas y construir de manera
+                    concertada los objetivos del proyecto.
+                </p>
+
+                <h3>2.a) Diseño de grupos focales</h3>
+                <p>Para cada grupo focal se sugiere especificar:</p>
+                <ul>
+                    <li><strong>Perfil de las personas participantes.</strong></li>
+                    <li><strong>Criterios de inclusión.</strong></li>
+                    <li><strong>Tipo de composición interna:</strong> homogénea u heterogénea.</li>
+                </ul>
+
+                <h4>Composición homogénea</h4>
+                <p>
+                    Grupos de personas con características similares (edad, género, ocupación, nivel
+                    educativo, experiencia común, etc.). Facilitan la expresión de vivencias compartidas.
+                </p>
+                <ul>
+                    <li>Mujeres artesanas de Potosí que trabajan con tejidos andinos.</li>
+                    <li>Jóvenes entre 16 y 18 años de una unidad educativa del trópico cochabambino.</li>
+                </ul>
+
+                <h4>Composición heterogénea</h4>
+                <p>
+                    Grupos que reúnen actores con posiciones y responsabilidades distintas frente al
+                    problema, lo que permite contrastar perspectivas.
+                </p>
+                <ul>
+                    <li>
+                        Dirigentes vecinales, funcionarios municipales, comerciantes y madres de familia
+                        discutiendo sobre seguridad urbana en El Alto.
+                    </li>
+                </ul>
+
+                <h4>Modelo de tabla para el diseño de grupos focales</h4>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Orden</th>
+                        <th>Perfil de los participantes</th>
+                        <th>Criterios de participación</th>
+                        <th>Composición interna</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Madres de familia del Distrito 8 (El Alto)</td>
+                        <td>Tienen hijos/as en colegios públicos del distrito</td>
+                        <td>Homogénea</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Profesores, juntas escolares y activistas juveniles</td>
+                        <td>Representan actores clave en el proceso educativo local</td>
+                        <td>Heterogénea</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Estudiantes de secundaria (14–17 años)</td>
+                        <td>Son directamente afectados por la deserción escolar</td>
+                        <td>Homogénea</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Autoridades municipales y líderes comunitarios</td>
+                        <td>Tienen poder de decisión o influencia en políticas públicas locales</td>
+                        <td>Heterogénea</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h3>2.b) Simulación de categorías de análisis y temas consensuados</h3>
+                <p>
+                    A partir de los grupos propuestos, se simulan los posibles resultados de la discusión.
+                    Es decir, se anticipa qué temas podrían emerger y cómo podrían agruparse en categorías
+                    de análisis.
+                </p>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Categorías de análisis</th>
+                        <th>Temas consensuados (ejemplos)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Acceso a la educación</td>
+                        <td>Ausencia de transporte escolar; escasez de docentes en áreas rurales.</td>
+                    </tr>
+                    <tr>
+                        <td>Factores económicos</td>
+                        <td>Trabajo infantil; falta de recursos para útiles y materiales escolares.</td>
+                    </tr>
+                    <tr>
+                        <td>Relación escuela–comunidad</td>
+                        <td>Poca participación de padres; comunicación deficiente con directivos.</td>
+                    </tr>
+                    <tr>
+                        <td>Condiciones escolares</td>
+                        <td>Infraestructura precaria; carencia de baños y recursos didácticos.</td>
+                    </tr>
+                    <tr>
+                        <td>Discriminación o violencia escolar</td>
+                        <td>Bullying asociado a etnicidad, género o condición socioeconómica.</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <h4>Recomendaciones</h4>
+                <ul>
+                    <li>Utilizar expresiones cercanas al modo de hablar de la comunidad.</li>
+                    <li>Hacer visibles coincidencias y desacuerdos entre actores.</li>
+                    <li>
+                        Elegir categorías que faciliten, en el siguiente paso, la construcción del
+                        análisis DAFO.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. DAFO -->
+    <section id="dafo">
+        <div class="toggle-block">
+            <div class="toggle-block-header">
+                <h2>3) Análisis DAFO (diagnóstico estratégico)</h2>
+                <button class="toggle-btn" onclick="toggleBlock('dafo-contenido')">Mostrar / Ocultar</button>
+            </div>
+            <div id="dafo-contenido" class="hidden">
+                <p>
+                    La matriz DAFO resume la situación identificando factores internos (fortalezas y
+                    debilidades) y factores externos (oportunidades y amenazas). En el marco de la IAP,
+                    el análisis debe reflejar la mirada colectiva de la comunidad, aunque en este trabajo
+                    se elabora de forma simulada.
+                </p>
+
+                <ul>
+                    <li>
+                        <strong>Fortalezas:</strong> recursos y capacidades internas que favorecen la
+                        transformación.
+                    </li>
+                    <li>
+                        <strong>Debilidades:</strong> limitaciones internas que dificultan el cambio.
+                    </li>
+                    <li>
+                        <strong>Oportunidades:</strong> condiciones externas favorables que pueden
+                        aprovecharse.
+                    </li>
+                    <li>
+                        <strong>Amenazas:</strong> condiciones externas que representan riesgos o
+                        obstáculos.
+                    </li>
+                </ul>
+
+                <p class="matrix-title">MATRIZ MODELO – A COMPLETAR POR USTEDES</p>
+                <p>
+                    <strong>Tema de investigación definido (Punto 1):</strong><br>
+                    Escriban aquí el título o problema trabajado.
+                </p>
+
+                <!-- MATRIZ DAFO FORMATO IMAGEN -->
+                <table class="matrix">
+                    <tr>
+                        <td class="matrix-side" rowspan="4">
+                            <span>Factores Positivos</span>
+                        </td>
+                        <td class="matrix-top" colspan="2">FACTORES INTERNOS</td>
+                        <td class="matrix-side" rowspan="4">
+                            <span>Factores Negativos</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="matrix-cell-title">
+                                <a href="#exp-dafo-fortalezas">Fortalezas</a>
+                            </span>
+                            <ul>
+                                <li>…</li>
+                                <li>…</li>
+                                <li>…</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <span class="matrix-cell-title">
+                                <a href="#exp-dafo-debilidades">Debilidades</a>
+                            </span>
+                            <ul>
+                                <li>…</li>
+                                <li>…</li>
+                                <li>…</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="matrix-cell-title">
+                                <a href="#exp-dafo-oportunidades">Oportunidades</a>
+                            </span>
+                            <ul>
+                                <li>…</li>
+                                <li>…</li>
+                                <li>…</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <span class="matrix-cell-title">
+                                <a href="#exp-dafo-amenazas">Amenazas</a>
+                            </span>
+                            <ul>
+                                <li>…</li>
+                                <li>…</li>
+                                <li>…</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-bottom" colspan="2">FACTORES EXTERNOS</td>
+                    </tr>
+                </table>
+
+                <h3>Orientaciones para cada cuadrante</h3>
+
+                <h4 id="exp-dafo-fortalezas">Fortalezas (internas – positivas)</h4>
+                <ul>
+                    <li>Capacidades organizativas y redes de colaboración en la comunidad.</li>
+                    <li>Liderazgos reconocidos y legitimados por los actores locales.</li>
+                    <li>Prácticas solidarias o de apoyo mutuo ya instaladas.</li>
+                </ul>
+
+                <h4 id="exp-dafo-debilidades">Debilidades (internas – negativas)</h4>
+                <ul>
+                    <li>Fragmentación o conflictos internos entre grupos.</li>
+                    <li>Escasez de recursos materiales, técnicos o de tiempo.</li>
+                    <li>Desconocimiento de derechos o de canales institucionales de reclamo.</li>
+                </ul>
+
+                <h4 id="exp-dafo-oportunidades">Oportunidades (externas – positivas)</h4>
+                <ul>
+                    <li>Presencia de programas públicos o de ONG que pueden apoyar el proceso.</li>
+                    <li>Políticas o marcos normativos favorables a la participación ciudadana.</li>
+                    <li>Disponibilidad de instituciones educativas o medios comunitarios aliados.</li>
+                </ul>
+
+                <h4 id="exp-dafo-amenazas">Amenazas (externas – negativas)</h4>
+                <ul>
+                    <li>Conflictos económicos, políticos o territoriales en el entorno.</li>
+                    <li>Procesos de discriminación estructural hacia el grupo o la comunidad.</li>
+                    <li>Proyectos externos (extractivos, inmobiliarios, etc.) que afectan el territorio.</li>
+                </ul>
+
+                <h3>Ejemplo referencial de matriz DAFO</h3>
+                <p><strong>Tema trabajado:</strong> Deserción escolar en adolescentes en barrios periféricos</p>
+
+                <table class="matrix">
+                    <tr>
+                        <td class="matrix-side" rowspan="4">
+                            <span>Factores Positivos</span>
+                        </td>
+                        <td class="matrix-top" colspan="2">FACTORES INTERNOS</td>
+                        <td class="matrix-side" rowspan="4">
+                            <span>Factores Negativos</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="matrix-cell-title">Fortalezas</span>
+                            <ul>
+                                <li>Jóvenes con alta motivación por concluir sus estudios.</li>
+                                <li>Red de madres solidarias que organizan tutorías informales.</li>
+                                <li>Docentes comprometidos con un enfoque intercultural.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <span class="matrix-cell-title">Debilidades</span>
+                            <ul>
+                                <li>Escasa participación de padres y madres en la vida escolar.</li>
+                                <li>Infraestructura deficiente (aulas saturadas, falta de baños adecuados).</li>
+                                <li>Desconocimiento de los derechos educativos por parte de las familias.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="matrix-cell-title">Oportunidades</span>
+                            <ul>
+                                <li>Programas gratuitos de refuerzo escolar en la zona.</li>
+                                <li>Radios comunitarias dispuestas a difundir campañas educativas.</li>
+                                <li>Apoyo del gobierno local mediante becas de permanencia escolar.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <span class="matrix-cell-title">Amenazas</span>
+                            <ul>
+                                <li>Migración interna que interrumpe la continuidad escolar.</li>
+                                <li>Presencia de pandillas juveniles alrededor de los centros educativos.</li>
+                                <li>Economía informal que obliga a muchos adolescentes a trabajar.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-bottom" colspan="2">FACTORES EXTERNOS</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CAME -->
+    <section id="came">
+        <div class="toggle-block">
+            <div class="toggle-block-header">
+                <h2>4) Matriz CAME – Diseño simulado de estrategias</h2>
+                <button class="toggle-btn" onclick="toggleBlock('came-contenido')">Mostrar / Ocultar</button>
+            </div>
+            <div id="came-contenido" class="hidden">
+                <p>
+                    La matriz CAME permite transformar el diagnóstico DAFO en propuestas de acción.
+                    Cada cuadrante del DAFO debe vincularse con una familia de estrategias:
+                    <em>mantener</em> fortalezas, <em>corregir</em> debilidades, <em>explotar</em> oportunidades
+                    y <em>afrontar</em> amenazas.
+                </p>
+
+                <ul>
+                    <li><strong>C – Corregir:</strong> estrategias que disminuyen o superan debilidades.</li>
+                    <li><strong>A – Afrontar:</strong> estrategias para reducir el impacto de las amenazas.</li>
+                    <li><strong>M – Mantener:</strong> estrategias para conservar y consolidar fortalezas.</li>
+                    <li><strong>E – Explotar:</strong> estrategias para aprovechar las oportunidades.</li>
+                </ul>
+
+                <p class="matrix-title">MATRIZ MODELO – A COMPLETAR POR USTEDES</p>
+                <p>
+                    <strong>Tema de investigación trabajado:</strong><br>
+                    Escriban aquí su título del punto 1.
+                </p>
+
+                <!-- MATRIZ CAME FORMATO IMAGEN -->
+                <table class="matrix">
+                    <tr>
+                        <td class="matrix-side" rowspan="4">
+                            <span>Factores Positivos</span>
+                        </td>
+                        <td class="matrix-top" colspan="2">FACTORES INTERNOS</td>
+                        <td class="matrix-side" rowspan="4">
+                            <span>Factores Negativos</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="matrix-cell-title">
+                                <a href="#exp-came-mantener">Estrategias para mantener Fortalezas</a>
+                            </span>
+                            <ul>
+                                <li>…</li>
+                                <li>…</li>
+                                <li>…</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <span class="matrix-cell-title">
+                                <a href="#exp-came-corregir">Estrategias para corregir Debilidades</a>
+                            </span>
+                            <ul>
+                                <li>…</li>
+                                <li>…</li>
+                                <li>…</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="matrix-cell-title">
+                                <a href="#exp-came-explotar">Estrategias para Explotar Oportunidades</a>
+                            </span>
+                            <ul>
+                                <li>…</li>
+                                <li>…</li>
+                                <li>…</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <span class="matrix-cell-title">
+                                <a href="#exp-came-afrontar">Estrategias para afrontar Amenazas</a>
+                            </span>
+                            <ul>
+                                <li>…</li>
+                                <li>…</li>
+                                <li>…</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-bottom" colspan="2">FACTORES EXTERNOS</td>
+                    </tr>
+                </table>
+
+                <h3>Orientaciones para formular estrategias</h3>
+
+                <h4 id="exp-came-mantener">Estrategias para mantener fortalezas</h4>
+                <ul>
+                    <li>Fortalecer prácticas organizativas exitosas y documentarlas.</li>
+                    <li>Crear mecanismos de reconocimiento a los liderazgos positivos.</li>
+                    <li>Institucionalizar espacios participativos que ya funcionan.</li>
+                </ul>
+
+                <h4 id="exp-came-corregir">Estrategias para corregir debilidades</h4>
+                <ul>
+                    <li>Implementar procesos de formación y sensibilización comunitaria.</li>
+                    <li>Introducir cambios en normas internas que excluyen a ciertos grupos.</li>
+                    <li>Gestionar recursos materiales o técnicos para superar carencias.</li>
+                </ul>
+
+                <h4 id="exp-came-explotar">Estrategias para explotar oportunidades</h4>
+                <ul>
+                    <li>Establecer alianzas con programas públicos y organizaciones de apoyo.</li>
+                    <li>Articular el proyecto con políticas de inclusión existentes.</li>
+                    <li>Utilizar medios de comunicación comunitarios para difundir la iniciativa.</li>
+                </ul>
+
+                <h4 id="exp-came-afrontar">Estrategias para afrontar amenazas</h4>
+                <ul>
+                    <li>Diseñar acciones de incidencia frente a actores e instituciones que generan riesgo.</li>
+                    <li>Consolidar redes de protección y apoyo mutuo en la comunidad.</li>
+                    <li>Definir protocolos de actuación ante conflictos o situaciones de violencia.</li>
+                </ul>
+
+                <h3>Ejemplo referencial de matriz CAME</h3>
+                <p><strong>Tema:</strong> Deserción escolar en adolescentes de zonas periurbanas</p>
+
+                <table class="matrix">
+                    <tr>
+                        <td class="matrix-side" rowspan="4">
+                            <span>Factores Positivos</span>
+                        </td>
+                        <td class="matrix-top" colspan="2">FACTORES INTERNOS</td>
+                        <td class="matrix-side" rowspan="4">
+                            <span>Factores Negativos</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="matrix-cell-title">Estrategias para mantener Fortalezas</span>
+                            <ul>
+                                <li>Fortalecer las tutorías vecinales lideradas por madres de familia.</li>
+                                <li>Visibilizar y apoyar públicamente a docentes comprometidos.</li>
+                                <li>Crear redes entre jóvenes con alto compromiso académico.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <span class="matrix-cell-title">Estrategias para corregir Debilidades</span>
+                            <ul>
+                                <li>Realizar talleres comunitarios sobre corresponsabilidad familiar.</li>
+                                <li>Gestionar donaciones o trueque de materiales escolares básicos.</li>
+                                <li>Incorporar módulos sobre derechos educativos en actividades escolares.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="matrix-cell-title">Estrategias para Explotar Oportunidades</span>
+                            <ul>
+                                <li>Coordinar con ONG para becas, útiles y refuerzos escolares.</li>
+                                <li>Utilizar radios comunitarias para campañas sobre educación.</li>
+                                <li>Vincular el proyecto con políticas de reinserción escolar.</li>
+                            </ul>
+                        </td>
+                        <td>
+                            <span class="matrix-cell-title">Estrategias para afrontar Amenazas</span>
+                            <ul>
+                                <li>Establecer redes barriales para prevenir el reclutamiento de pandillas.</li>
+                                <li>Gestionar apoyo económico municipal para reducir el trabajo infantil.</li>
+                                <li>Promover políticas de seguimiento a adolescentes migrantes en riesgo.</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="matrix-bottom" colspan="2">FACTORES EXTERNOS</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos">
+        <div class="toggle-block video-section">
+            <div class="toggle-block-header">
+                <h2>Videos de apoyo</h2>
+                <button class="toggle-btn" onclick="toggleBlock('videos-contenido')">Mostrar / Ocultar</button>
+            </div>
+            <div id="videos-contenido" class="hidden">
+                <p class="small">
+                    En caso de que el reproductor presente errores, los videos pueden abrirse directamente
+                    en YouTube haciendo clic en los títulos.
+                </p>
+
+                <h3>
+                    <a href="https://www.youtube.com/watch?v=RY1XVyySDs8" target="_blank" rel="noopener">
+                        1. Introducción a la Investigación Acción Participativa
+                    </a>
+                </h3>
+                <div class="video-wrapper">
+                    <iframe
+                        src="https://www.youtube.com/embed/RY1XVyySDs8"
+                        title="Investigación Acción Participativa"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <h3>
+                    <a href="https://www.youtube.com/watch?v=6z8DrEhadqE" target="_blank" rel="noopener">
+                        2. El grupo focal como técnica cualitativa
+                    </a>
+                </h3>
+                <div class="video-wrapper">
+                    <iframe
+                        src="https://www.youtube.com/embed/6z8DrEhadqE"
+                        title="Grupo focal"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <h3>
+                    <a href="https://www.youtube.com/watch?v=-Mh-vevJteo" target="_blank" rel="noopener">
+                        3. Matriz DAFO y análisis CAME
+                    </a>
+                </h3>
+                <div class="video-wrapper">
+                    <iframe
+                        src="https://www.youtube.com/embed/-Mh-vevJteo"
+                        title="Matriz FODA y CAME"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LECTURAS -->
+    <section id="recursos">
+        <div class="toggle-block">
+            <div class="toggle-block-header">
+                <h2>Lecturas y recursos complementarios</h2>
+                <button class="toggle-btn" onclick="toggleBlock('recursos-contenido')">Mostrar / Ocultar</button>
+            </div>
+            <div id="recursos-contenido" class="hidden">
+                <div class="links-list">
+                    <h3>Investigación Acción Participativa</h3>
+                    <ul>
+                        <li>
+                            Balcázar, F. (2003). “La investigación acción participativa”.
+                            <a href="https://www.redalyc.org/pdf/184/18400804.pdf" target="_blank" rel="noopener">
+                                Texto completo en Redalyc
+                            </a>.
+                        </li>
+                        <li>
+                            Síntesis general del enfoque:
+                            <a href="https://es.wikipedia.org/wiki/Investigaci%C3%B3n_de_acci%C3%B3n_participativa"
+                               target="_blank" rel="noopener">
+                                “Investigación de acción participativa” (Wikipedia)
+                            </a>.
+                        </li>
+                    </ul>
+
+                    <h3>Grupos focales</h3>
+                    <ul>
+                        <li>
+                            Mella, O. “Los grupos focales como herramienta de investigación cualitativa”.
+                            <a href="https://apuntescomunicacionuagrm.files.wordpress.com/2016/07/orlando-mella-grupos-focales.pdf"
+                               target="_blank" rel="noopener">
+                                Capítulo en PDF
+                            </a>.
+                        </li>
+                        <li>
+                            Guía breve:
+                            <a href="https://atlasti.com/es/guias/guia-investigacion-cualitativa-parte-1/grupos-focales"
+                               target="_blank" rel="noopener">
+                                ATLAS.ti – Grupos focales
+                            </a>.
+                        </li>
+                    </ul>
+
+                    <h3>Análisis DAFO y matriz CAME</h3>
+                    <ul>
+                        <li>
+                            Introducción al análisis DAFO:
+                            <a href="https://cei.es/analisis-dafo-came/" target="_blank" rel="noopener">
+                                CEI – “Análisis DAFO. Análisis CAME”
+                            </a>.
+                        </li>
+                        <li>
+                            Explicación centrada en CAME:
+                            <a href="https://www.unir.net/revista/empresa/analisis-came/" target="_blank" rel="noopener">
+                                UNIR – “Análisis CAME: qué es y cómo se hace”
+                            </a>.
+                        </li>
+                    </ul>
+                </div>
+                <p class="small">
+                    Las matrices incluidas en esta guía pueden trasladarse a un documento de texto o a una
+                    hoja de cálculo para su llenado colaborativo durante el trabajo de grupo.
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+    function goToSection(id) {
+        var el = document.getElementById(id);
+        if (el) {
+            el.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
+    }
+
+    function toggleBlock(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.classList.toggle('hidden');
+    }
+</script>
+</body>
+</html>
