@@ -1,0 +1,1027 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UA3 + UA4 | IAP — Árboles y Flujograma Situacional (Guía Participativa)</title>
+  <meta name="description" content="Guía de aprendizaje (UA3 + UA4) en Investigación-Acción Participativa: Árbol de Problemas, Árbol de Soluciones y Flujograma situacional, con recomendaciones de facilitación y ejemplo ancla." />
+  <style>
+    :root{
+      --bg:#0b1220;
+      --text:#e9eefc;
+      --muted:#b7c2e0;
+      --line:rgba(255,255,255,.14);
+      --accent:#74a7ff;
+      --accent2:#9ef0c3;
+      --warn:#ffcf5a;
+      --bad:#ff6b6b;
+      --shadow: 0 10px 24px rgba(0,0,0,.35);
+      --radius:16px;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      line-height:1.62;
+      background:
+        radial-gradient(1200px 800px at 15% 10%, rgba(116,167,255,.22), transparent 55%),
+        radial-gradient(1000px 700px at 90% 20%, rgba(158,240,195,.16), transparent 55%),
+        radial-gradient(900px 700px at 50% 90%, rgba(255,207,90,.10), transparent 60%),
+        var(--bg);
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{max-width:1180px; margin:0 auto; padding: 30px 18px 10px;}
+    h1{margin:0 0 6px; font-size: clamp(24px, 3.2vw, 38px); letter-spacing:.2px;}
+    .subtitle{margin:0; color:var(--muted); max-width: 110ch; font-size: 15px;}
+
+    .container{
+      max-width:1180px;
+      margin:0 auto;
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap: 18px;
+      align-items:start;
+    }
+    @media (max-width: 980px){ .container{grid-template-columns:1fr} .sidebar{position:relative; top:auto} }
+
+    .card{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card .hd{
+      padding: 14px 14px 10px;
+      border-bottom:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .card .hd h2{margin:0; font-size:16px; letter-spacing:.2px;}
+    .card .bd{ padding:14px; }
+
+    .sidebar{ position: sticky; top: 14px; }
+    .nav a{
+      display:block;
+      padding: 10px 10px;
+      border-radius: 12px;
+      border:1px solid transparent;
+      color: var(--text);
+    }
+    .nav a:hover{
+      background: rgba(116,167,255,.10);
+      border-color: rgba(116,167,255,.25);
+      text-decoration:none;
+    }
+    .nav small{ display:block; margin-top:2px; color: var(--muted); }
+    .nav .sub{ margin-left: 10px; border-left: 1px solid rgba(255,255,255,.10); padding-left: 10px; }
+
+    .badge{
+      display:inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size: 12px;
+      white-space:nowrap;
+    }
+    .badge.good{ border-color: rgba(158,240,195,.40); background: rgba(158,240,195,.10); color: var(--text); }
+    .badge.warn{ border-color: rgba(255,207,90,.40); background: rgba(255,207,90,.10); color: var(--text); }
+    .badge.bad{ border-color: rgba(255,107,107,.40); background: rgba(255,107,107,.10); color: var(--text); }
+
+    .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 980px){ .grid2{grid-template-columns:1fr;} }
+
+    .callout{
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.10);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .callout b{display:block; margin-bottom:6px;}
+    .muted{ color: var(--muted); }
+    hr{ border:0; border-top:1px solid var(--line); margin: 16px 0; }
+    h3{ margin: 0 0 8px; font-size: 15px; letter-spacing: .2px; }
+    h4{ margin: 12px 0 6px; font-size: 14px; letter-spacing: .2px; }
+    ul{ margin: 8px 0; padding-left: 18px; }
+    li{ margin: 6px 0; }
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      border:1px solid var(--line);
+      border-radius: 14px;
+      overflow:hidden;
+      background: rgba(255,255,255,.02);
+    }
+    .table th, .table td{
+      padding: 10px 10px;
+      border-bottom:1px solid var(--line);
+      vertical-align:top;
+      font-size: 13px;
+    }
+    .table th{
+      text-align:left;
+      background: rgba(255,255,255,.04);
+      font-weight: 650;
+    }
+    .table tr:last-child td{ border-bottom:0; }
+
+    .diagram-wrap{
+      border:1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(0,0,0,.14);
+      padding: 12px;
+      overflow:auto;
+    }
+    svg.tree{ min-width: 1260px; display:block; }
+    .link{ stroke: rgba(255,255,255,.18); stroke-width: 1.2; fill:none; }
+    .link-strong{ stroke: rgba(255,255,255,.28); stroke-width: 1.6; fill:none; }
+
+    .fo{ overflow: visible; }
+    .node{
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 8px 10px;
+      background: rgba(255,255,255,.06);
+      color: #e9eefc;
+      font-size: 12.5px;
+      line-height: 1.25;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      height: 100%;
+    }
+    .node small{
+      display:block;
+      color: #b7c2e0;
+      font-size: 11.5px;
+      margin-top: 2px;
+      line-height: 1.2;
+    }
+    .main{ border-color: rgba(255,207,90,.55); background: rgba(255,207,90,.12); }
+    .cause{ border-color: rgba(116,167,255,.55); background: rgba(116,167,255,.10); }
+    .effect{ border-color: rgba(158,240,195,.55); background: rgba(158,240,195,.10); }
+
+    .flowgrid{ display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+    @media (max-width: 980px){ .flowgrid{grid-template-columns:1fr;} }
+    .flowcol{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .flowcol h3{ margin:0 0 8px; font-size: 14px; letter-spacing:.2px; }
+    .flowcol ul{ margin: 0; padding-left: 18px; }
+    .flowcol li{ margin: 6px 0; }
+
+    details{
+      border:1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      padding: 10px 12px;
+      margin: 10px 0;
+    }
+    details summary{
+      cursor:pointer;
+      font-weight: 650;
+      letter-spacing: .1px;
+    }
+    details[open]{ background: rgba(255,255,255,.04); }
+    .mono{ font-family: var(--mono); }
+
+    .footer{max-width:1180px; margin:0 auto; padding: 0 18px 32px; color: var(--muted); font-size: 12px;}
+    .section-title{display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;}
+
+    .note{
+      border-left: 3px solid rgba(116,167,255,.55);
+      padding-left: 10px;
+      color: var(--muted);
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>UA3 + UA4 — Investigación-Acción Participativa: Árboles y Flujograma situacional</h1>
+    <p class="subtitle">
+      En IAP, estos instrumentos no son “tareas de escritorio”: se construyen con actores del territorio, se validan en diálogo
+      y se usan para decidir acciones. Esta guía explica <b>cómo hacerlo participativamente</b> y muestra un <b>ejemplo completo</b>
+      (deserción escolar periurbana) para modelar estructura, lenguaje y coherencia.
+    </p>
+  </header>
+
+  <main class="container">
+    <aside class="sidebar">
+      <div class="card">
+        <div class="hd">
+          <h2>Contenido</h2>
+          <span class="badge">UA3 + UA4</span>
+        </div>
+        <div class="bd nav" id="nav">
+          <a href="#evaluacion">Evaluación<small>Productos y criterios</small></a>
+          <a href="#iap">IAP y lógica causal<small>Qué cambia cuando es participativo</small></a>
+          <div class="sub">
+            <a href="#principios">Principios de trabajo participativo<small>Reglas de interacción</small></a>
+            <a href="#facilitacion">Facilitación y roles<small>Cómo conducir el taller</small></a>
+            <a href="#evidencia">Evidencia mínima<small>Cómo sostener lo que se afirma</small></a>
+          </div>
+          <a href="#ejemplo">Ejemplo ancla<small>Contexto del caso</small></a>
+          <a href="#ap">Árbol de Problemas<small>Cómo se construye + ejemplo</small></a>
+          <div class="sub">
+            <a href="#ap-pasos">Pasos recomendados<small>Secuencia de taller</small></a>
+            <a href="#ap-errores">Errores frecuentes<small>Y cómo corregirlos</small></a>
+          </div>
+          <a href="#as">Árbol de Soluciones<small>Cómo se convierte + ejemplo</small></a>
+          <div class="sub">
+            <a href="#as-pasos">Conversión y priorización<small>De medios a líneas de acción</small></a>
+          </div>
+          <a href="#flujograma">Flujograma situacional<small>Control / influencia / externo</small></a>
+          <div class="sub">
+            <a href="#flujograma-matriz">Matriz de implementación<small>Responsables y productos</small></a>
+          </div>
+          <a href="#checklist">Checklist final<small>Control de coherencia y calidad</small></a>
+        </div>
+      </div>
+    </aside>
+
+    <section>
+      <div id="evaluacion" class="card">
+        <div class="hd">
+          <div class="section-title">
+            <h2>1) Evaluación y productos</h2>
+            <span class="badge good">foco: coherencia y trazabilidad</span>
+          </div>
+        </div>
+        <div class="bd">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Actividad</th>
+                <th>Producto esperado</th>
+                <th>Ponderación</th>
+                <th>Evidencia mínima</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Cuestionario UA3–UA4</b></td>
+                <td>Comprensión conceptual (árboles y flujograma).</td>
+                <td><span class="badge">20%</span></td>
+                <td>Respuesta completa y consistente.</td>
+              </tr>
+              <tr>
+                <td><b>Árbol de Problemas</b></td>
+                <td>Problema central + causas/efectos jerarquizados.</td>
+                <td><span class="badge warn">30%</span></td>
+                <td>Registro breve del taller: participantes y acuerdos.</td>
+              </tr>
+              <tr>
+                <td><b>Árbol de Soluciones</b></td>
+                <td>Conversión directa del árbol (objetivo–medios–fines).</td>
+                <td><span class="badge warn">20%</span></td>
+                <td>Tabla de conversión (1 a 1) causa→medio, efecto→fin.</td>
+              </tr>
+              <tr>
+                <td><b>Flujograma situacional</b></td>
+                <td>Acciones por zona + responsables + producto verificable.</td>
+                <td><span class="badge warn">30%</span></td>
+                <td>Matriz de implementación (quién hace qué y cuándo).</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="note">
+            En IAP, la calidad no se mide por “diseño bonito”. Se mide por: claridad del problema, relaciones causales plausibles,
+            acuerdos logrados y capacidad de ejecutar acciones con actores reales.
+          </div>
+        </div>
+      </div>
+
+      <div id="iap" class="card" style="margin-top:18px;">
+        <div class="hd">
+          <div class="section-title">
+            <h2>2) Qué cambia en IAP</h2>
+            <span class="badge">diagnóstico para la acción</span>
+          </div>
+        </div>
+        <div class="bd">
+          <div class="grid2">
+            <div class="callout">
+              <b>IAP: finalidad</b>
+              <div class="muted">
+                El objetivo es transformar una realidad con quienes la viven. Por eso, el diagnóstico no es “extractivo”.
+                Los instrumentos se construyen con la comunidad, se validan y se convierten en decisiones.
+              </div>
+            </div>
+            <div class="callout">
+              <b>Consecuencia metodológica</b>
+              <div class="muted">
+                La lógica causal del árbol no reemplaza la experiencia local: la ordena. Si un nodo no es reconocido por los actores,
+                se reformula. Si no hay acción posible, se reclasifica como condición externa.
+              </div>
+            </div>
+          </div>
+
+          <details id="principios">
+            <summary>Principios de trabajo participativo</summary>
+            <ul>
+              <li><b>Co-definición del problema</b>: el “problema central” se acuerda con los participantes; no se impone.</li>
+              <li><b>Lenguaje comprensible</b>: nodos claros, sin tecnicismos innecesarios. Si no se entiende, no se ejecuta.</li>
+              <li><b>Pluralidad de voces</b>: se cuida que hablen actores con posiciones distintas (no solo quienes “tienen autoridad”).</li>
+              <li><b>Transparencia</b>: se registra qué se acordó, qué quedó en debate y qué evidencia falta.</li>
+              <li><b>Acción y aprendizaje</b>: se prioriza lo ejecutable; se ajusta con retroalimentación (ciclos de mejora).</li>
+            </ul>
+          </details>
+
+          <details id="facilitacion">
+            <summary>Facilitación y roles en el taller</summary>
+            <div class="grid2">
+              <div class="callout">
+                <b>Roles mínimos</b>
+                <ul>
+                  <li><b>Facilitación</b>: conduce el proceso, cuida tiempos y clima.</li>
+                  <li><b>Relatoría</b>: registra acuerdos, disensos y decisiones.</li>
+                  <li><b>Validación</b>: grupo pequeño que revisa coherencia final.</li>
+                </ul>
+              </div>
+              <div class="callout">
+                <b>Reglas operativas</b>
+                <ul>
+                  <li>La facilitación pregunta más de lo que afirma.</li>
+                  <li>Se separa “causas” de “soluciones”. En la fase de problemas, no se discute el plan.</li>
+                  <li>Se verifica cada nodo con una pregunta: <span class="mono">¿cómo sabemos esto?</span> y <span class="mono">¿quién lo vive?</span></li>
+                </ul>
+              </div>
+            </div>
+            <div class="note">
+              Recomendación práctica: para evitar capturas del debate por un solo actor, use rondas cortas y votaciones transparentes
+              para priorizar (por ejemplo, selección de 3 causas directas principales).
+            </div>
+          </details>
+
+          <details id="evidencia">
+            <summary>Evidencia mínima para sostener el árbol</summary>
+            <p class="muted">
+              En IAP no siempre hay grandes bases de datos, pero sí debe haber trazas verificables. Se sugiere combinar:
+            </p>
+            <ul>
+              <li><b>Observación</b> (patrones recurrentes, situaciones típicas) documentada en notas.</li>
+              <li><b>Relatos</b> (entrevistas breves, historias de vida o de caso).</li>
+              <li><b>Registros institucionales</b> (asistencia, repitencia, derivaciones) si existen.</li>
+              <li><b>Mapa de actores</b> (quién influye, quién decide, quién sufre el problema) para evitar diagnósticos “ciegos”.</li>
+            </ul>
+            <div class="callout">
+              <b>Regla de oro</b>
+              <div class="muted">
+                Si un nodo es importante pero no tiene evidencia mínima, se etiqueta como <b>hipótesis</b> y se define cómo verificarla
+                en el siguiente ciclo de trabajo.
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div id="ejemplo" class="card" style="margin-top:18px;">
+        <div class="hd">
+          <div class="section-title">
+            <h2>3) Ejemplo ancla</h2>
+            <span class="badge">deserción escolar periurbana</span>
+          </div>
+        </div>
+        <div class="bd">
+          <div class="grid2">
+            <div class="callout">
+              <b>Contexto</b>
+              <div class="muted">
+                Barrio periurbano con alta movilidad residencial, empleo informal y limitaciones en conectividad y servicios.
+                Se observan interrupciones frecuentes de asistencia y abandono en adolescentes de 12 a 17 años.
+              </div>
+            </div>
+            <div class="callout">
+              <b>Actores</b>
+              <div class="muted">
+                Estudiantes; familias/tutores; docentes y dirección escolar; junta vecinal; municipio/subalcaldía;
+                servicios sociales; organizaciones comunitarias y aliados (ONG/sector privado local).
+              </div>
+            </div>
+          </div>
+          <hr/>
+          <div class="callout">
+            <b>Cómo se usa este ejemplo</b>
+            <div class="muted">
+              El ejemplo modela estructura y trazabilidad. En su trabajo, mantenga la lógica y reemplácela por su caso.
+              Si su tema es distinto, el formato no cambia: cambia el contenido.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="ap" class="card" style="margin-top:18px;">
+        <div class="hd">
+          <div class="section-title">
+            <h2>4) Árbol de Problemas — construcción participativa</h2>
+            <span class="badge warn">UA3 (30%)</span>
+          </div>
+        </div>
+        <div class="bd">
+          <div class="grid2">
+            <div class="callout">
+              <b>Qué es</b>
+              <div class="muted">
+                Representa un problema central y sus relaciones de causa-efecto en niveles (directo/indirecto).
+                No es “lista de quejas”: es una estructura causal para decidir qué atacar primero.
+              </div>
+            </div>
+            <div class="callout">
+              <b>Pregunta guía en IAP</b>
+              <div class="muted">
+                <span class="mono">¿Cuál es el problema que afecta a más personas o con mayor severidad, y que la comunidad reconoce como prioridad?</span>
+              </div>
+            </div>
+          </div>
+
+          <details id="ap-pasos" open>
+            <summary>Pasos recomendados para construir el Árbol de Problemas (taller participativo)</summary>
+            <h4>Paso 1: preparación (antes del taller)</h4>
+            <ul>
+              <li>Defina el <b>alcance</b> del problema (territorio, población, periodo) y quiénes deben participar.</li>
+              <li>Prepare evidencia mínima disponible (registros, observación, testimonios). No para imponer, sino para contrastar.</li>
+              <li>Defina reglas: respeto, turnos, lenguaje claro y registro visible de acuerdos.</li>
+            </ul>
+
+            <h4>Paso 2: definición del problema central (en plenaria)</h4>
+            <ul>
+              <li>Redacte en negativo, específico y observable (evite “falta de conciencia”, “mala cultura”).</li>
+              <li>Valide con dos preguntas: <span class="mono">¿a quién afecta?</span> y <span class="mono">¿cómo se manifiesta?</span></li>
+              <li>Si aparecen varios problemas, seleccione uno como central y deje los otros como causas/efectos o problemas relacionados.</li>
+            </ul>
+
+            <h4>Paso 3: lluvia de causas y efectos (sin ordenar aún)</h4>
+            <ul>
+              <li>Primero causas, luego efectos (o al revés), pero no mezcle “soluciones” en esta fase.</li>
+              <li>Aplique un criterio práctico: <span class="mono">si se interviene aquí, ¿podría disminuir el problema?</span></li>
+            </ul>
+
+            <h4>Paso 4: jerarquización (directo/indirecto)</h4>
+            <ul>
+              <li>Identifique 3–5 causas directas y 3–5 efectos directos.</li>
+              <li>Para cada causa directa, agregue 1–3 causas indirectas; igual para efectos.</li>
+              <li>Evite nodos “omnibus” (demasiado generales) y nodos “micro” (detalles que no cambian la causalidad).</li>
+            </ul>
+
+            <h4>Paso 5: validación participativa</h4>
+            <ul>
+              <li>Revise coherencia con “lectura vertical”: de causa indirecta → causa directa → problema → efecto directo → efecto indirecto.</li>
+              <li>Marque lo incierto como hipótesis (a verificar) y acuerde cómo obtener evidencia.</li>
+            </ul>
+          </details>
+
+          <details id="ap-errores">
+            <summary>Errores frecuentes y cómo corregirlos</summary>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Error</th>
+                  <th>Cómo se detecta</th>
+                  <th>Cómo se corrige</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Problema central demasiado amplio</td>
+                  <td>No se puede observar ni medir; sirve para todo</td>
+                  <td>Acote población, territorio y manifestación observable</td>
+                </tr>
+                <tr>
+                  <td>Causas formuladas como juicios morales</td>
+                  <td>“Falta de voluntad”, “poca responsabilidad”</td>
+                  <td>Reformular como condiciones o barreras verificables</td>
+                </tr>
+                <tr>
+                  <td>Confundir causas con soluciones</td>
+                  <td>Aparecen acciones (“hacer campañas”, “capacitar”)</td>
+                  <td>Dejar la acción para el Árbol de Soluciones / flujograma</td>
+                </tr>
+                <tr>
+                  <td>Lista sin jerarquía</td>
+                  <td>No hay niveles; todo “cuelga” del problema central</td>
+                  <td>Elegir directas vs indirectas; eliminar duplicaciones</td>
+                </tr>
+              </tbody>
+            </table>
+          </details>
+
+          <hr/>
+
+          <div class="diagram-wrap">
+            <svg class="tree" viewBox="0 0 1400 820" role="img" aria-label="Árbol de Problemas: deserción escolar periurbana">
+              <!-- Links -->
+              <path class="link-strong" d="M700 380 L700 300" />
+              <path class="link-strong" d="M700 300 L250 260" />
+              <path class="link-strong" d="M700 300 L700 260" />
+              <path class="link-strong" d="M700 300 L1150 260" />
+
+              <path class="link" d="M250 260 L250 170" />
+              <path class="link" d="M700 260 L700 170" />
+              <path class="link" d="M1150 260 L1150 170" />
+
+              <path class="link-strong" d="M700 440 L700 520" />
+              <path class="link-strong" d="M700 520 L170 610" />
+              <path class="link-strong" d="M700 520 L500 610" />
+              <path class="link-strong" d="M700 520 L900 610" />
+              <path class="link-strong" d="M700 520 L1230 610" />
+
+              <path class="link" d="M170 610 L170 690" />
+              <path class="link" d="M500 610 L500 690" />
+              <path class="link" d="M900 610 L900 690" />
+              <path class="link" d="M1230 610 L1230 690" />
+
+              <!-- Indirect effects (3) -->
+              <foreignObject class="fo" x="70" y="70" width="360" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node effect">
+                  Menores oportunidades de empleo y formación
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="520" y="70" width="360" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node effect">
+                  Reproducción intergeneracional de desigualdad
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="970" y="70" width="360" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node effect">
+                  Mayor vulnerabilidad a riesgos y violencia
+                </div>
+              </foreignObject>
+
+              <!-- Direct effects (3) -->
+              <foreignObject class="fo" x="70" y="215" width="360" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node effect">
+                  Rezago y repitencia en la trayectoria escolar
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="520" y="215" width="360" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node effect">
+                  Bajo rendimiento académico y desmotivación
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="970" y="215" width="360" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node effect">
+                  Debilitamiento del vínculo escuela–familia
+                </div>
+              </foreignObject>
+
+              <!-- Main problem -->
+              <foreignObject class="fo" x="370" y="340" width="660" height="100">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node main">
+                  Alta deserción escolar de adolescentes (12–17) en contexto periurbano
+                </div>
+              </foreignObject>
+
+              <!-- Direct causes (4) -->
+              <foreignObject class="fo" x="20" y="565" width="300" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Presión económica familiar y necesidad de ingresos
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="350" y="565" width="300" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Experiencia escolar poco pertinente y apoyo insuficiente
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="750" y="565" width="300" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Barreras logísticas de acceso y permanencia
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="1080" y="565" width="300" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Entorno social de riesgo y baja contención comunitaria
+                </div>
+              </foreignObject>
+
+              <!-- Indirect causes (4) -->
+              <foreignObject class="fo" x="20" y="695" width="300" height="105">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Trabajo adolescente con horarios incompatibles
+                  <small>empleo informal no regulado</small>
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="350" y="695" width="300" height="105">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Costos escolares y de transporte
+                  <small>materiales, uniformes, traslados</small>
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="750" y="695" width="300" height="105">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Infraestructura y conectividad limitadas
+                  <small>espacios de estudio y recursos</small>
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="1080" y="695" width="300" height="105">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Violencia/bullying y falta de actividades seguras
+                  <small>riesgos juveniles y conflictos barriales</small>
+                </div>
+              </foreignObject>
+            </svg>
+          </div>
+
+          <div class="note">
+            Recomendación para su informe: incluya una breve “traza participativa” (quién participó, cómo se decidió el problema central
+            y qué nodos quedaron como hipótesis). Esto fortalece la legitimidad del diagnóstico.
+          </div>
+        </div>
+      </div>
+
+      <div id="as" class="card" style="margin-top:18px;">
+        <div class="hd">
+          <div class="section-title">
+            <h2>5) Árbol de Soluciones — conversión y priorización</h2>
+            <span class="badge warn">UA3 (20%)</span>
+          </div>
+        </div>
+        <div class="bd">
+          <div class="grid2">
+            <div class="callout">
+              <b>Regla de conversión</b>
+              <div class="muted">
+                Problema central → objetivo general (positivo). Causas → medios. Efectos → fines.
+                Se conserva la estructura (conversión 1 a 1).
+              </div>
+            </div>
+            <div class="callout">
+              <b>Enfoque IAP</b>
+              <div class="muted">
+                La comunidad no solo “convierte frases”: prioriza medios según factibilidad, impacto y acuerdos de corresponsabilidad.
+              </div>
+            </div>
+          </div>
+
+          <details id="as-pasos" open>
+            <summary>Cómo construir el Árbol de Soluciones en IAP</summary>
+            <h4>1) Conversión literal (sin inventar)</h4>
+            <ul>
+              <li>Transforme cada nodo del árbol de problemas en su versión positiva.</li>
+              <li>Evite introducir acciones específicas (“capacitar”, “construir”) demasiado pronto.</li>
+            </ul>
+
+            <h4>2) Priorización participativa de medios</h4>
+            <ul>
+              <li>Seleccione 2–3 medios directos como foco del primer ciclo de intervención.</li>
+              <li>Use criterios explícitos y acordados: impacto probable, costos, tiempo, legitimidad, riesgos, y capacidad instalada.</li>
+              <li>Identifique qué actores se comprometen en cada medio (corresponsabilidad).</li>
+            </ul>
+
+            <h4>3) Del medio a la línea de acción</h4>
+            <ul>
+              <li>Convierta cada medio priorizado en un conjunto de acciones (flujograma) sin perder trazabilidad.</li>
+              <li>Si una acción no se conecta con un medio, no debería estar en el plan (o el medio está mal formulado).</li>
+            </ul>
+          </details>
+
+          <hr/>
+
+          <div class="diagram-wrap">
+            <svg class="tree" viewBox="0 0 1400 820" role="img" aria-label="Árbol de Soluciones: reducción de deserción escolar periurbana">
+              <!-- Links -->
+              <path class="link-strong" d="M700 380 L700 300" />
+              <path class="link-strong" d="M700 300 L250 260" />
+              <path class="link-strong" d="M700 300 L700 260" />
+              <path class="link-strong" d="M700 300 L1150 260" />
+
+              <path class="link" d="M250 260 L250 170" />
+              <path class="link" d="M700 260 L700 170" />
+              <path class="link" d="M1150 260 L1150 170" />
+
+              <path class="link-strong" d="M700 440 L700 520" />
+              <path class="link-strong" d="M700 520 L170 610" />
+              <path class="link-strong" d="M700 520 L500 610" />
+              <path class="link-strong" d="M700 520 L900 610" />
+              <path class="link-strong" d="M700 520 L1230 610" />
+
+              <path class="link" d="M170 610 L170 690" />
+              <path class="link" d="M500 610 L500 690" />
+              <path class="link" d="M900 610 L900 690" />
+              <path class="link" d="M1230 610 L1230 690" />
+
+              <!-- Indirect fins (3) -->
+              <foreignObject class="fo" x="70" y="70" width="360" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node effect">
+                  Mayor empleabilidad y acceso a formación
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="520" y="70" width="360" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node effect">
+                  Mejora del bienestar y reducción de desigualdad
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="970" y="70" width="360" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node effect">
+                  Entorno comunitario más protector y resiliente
+                </div>
+              </foreignObject>
+
+              <!-- Direct fins (3) -->
+              <foreignObject class="fo" x="70" y="215" width="360" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node effect">
+                  Trayectorias educativas continuas sin rezago
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="520" y="215" width="360" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node effect">
+                  Mejor rendimiento académico y motivación sostenida
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="970" y="215" width="360" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node effect">
+                  Relación escuela–familia fortalecida
+                </div>
+              </foreignObject>
+
+              <!-- Objective -->
+              <foreignObject class="fo" x="370" y="340" width="660" height="100">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node main">
+                  Reducir la deserción escolar de adolescentes (12–17) en contexto periurbano
+                </div>
+              </foreignObject>
+
+              <!-- Direct medios (4) -->
+              <foreignObject class="fo" x="20" y="565" width="300" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Reducir barreras económicas y compatibilizar estudio–trabajo
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="350" y="565" width="300" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Fortalecer apoyo pedagógico y socioemocional
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="750" y="565" width="300" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Mejorar logística de acceso y permanencia
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="1080" y="565" width="300" height="90">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Consolidar entornos protectores y oferta juvenil segura
+                </div>
+              </foreignObject>
+
+              <!-- Indirect medios (4) -->
+              <foreignObject class="fo" x="20" y="695" width="300" height="105">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Programas de reinserción y horarios flexibles
+                  <small>acuerdos y rutas educativas</small>
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="350" y="695" width="300" height="105">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Tutorías focalizadas y acompañamiento
+                  <small>seguimiento de inasistencias</small>
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="750" y="695" width="300" height="105">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Conectividad, recursos y espacios de estudio
+                  <small>mejoras graduales y alianzas</small>
+                </div>
+              </foreignObject>
+              <foreignObject class="fo" x="1080" y="695" width="300" height="105">
+                <div xmlns="http://www.w3.org/1999/xhtml" class="node cause">
+                  Prevención/mediación de violencia y actividades seguras
+                  <small>liderazgo comunitario juvenil</small>
+                </div>
+              </foreignObject>
+            </svg>
+          </div>
+
+          <details>
+            <summary>Recomendación: tabla simple de conversión (para entregar con el árbol)</summary>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Nodo en Árbol de Problemas (negativo)</th>
+                  <th>Conversión en Árbol de Soluciones (positivo)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Alta deserción escolar…</td>
+                  <td>Reducir la deserción escolar…</td>
+                </tr>
+                <tr>
+                  <td>Presión económica y necesidad de ingresos</td>
+                  <td>Reducir barreras económicas y compatibilizar estudio–trabajo</td>
+                </tr>
+                <tr>
+                  <td>Rezago y repitencia</td>
+                  <td>Trayectorias educativas continuas sin rezago</td>
+                </tr>
+              </tbody>
+            </table>
+          </details>
+        </div>
+      </div>
+
+      <div id="flujograma" class="card" style="margin-top:18px;">
+        <div class="hd">
+          <div class="section-title">
+            <h2>6) Flujograma situacional — de medios a acciones</h2>
+            <span class="badge warn">UA4 (30%)</span>
+          </div>
+        </div>
+        <div class="bd">
+          <div class="callout">
+            <b>Idea central</b>
+            <div class="muted">
+              El flujograma traduce medios (qué hay que lograr) en acciones (qué se hace) y reconoce límites reales:
+              lo que se controla, lo que se influencia y lo externo.
+            </div>
+          </div>
+
+          <details open>
+            <summary>Cómo construirlo participativamente</summary>
+            <ul>
+              <li>Parta de 2–3 medios priorizados y pregunte: <span class="mono">¿qué acciones concretas harían esto posible en 90 días?</span></li>
+              <li>Para cada acción defina: responsable líder, aliados, producto verificable y frecuencia/plazo.</li>
+              <li>Cuando una acción depende de terceros, clasifíquela como influencia. Si depende de condiciones macro, es externo.</li>
+              <li>Valide con los actores si el compromiso es realista: en IAP, lo “deseable” sin compromiso suele fracasar.</li>
+            </ul>
+          </details>
+
+          <hr/>
+
+          <div class="flowgrid">
+            <div class="flowcol">
+              <h3>Podemos controlar <span class="badge good">acción directa</span></h3>
+              <ul>
+                <li>Sistema de alerta temprana de inasistencias (registro semanal y contacto a tutores).</li>
+                <li>Tutorías focalizadas para estudiantes con rezago.</li>
+                <li>Espacios de estudio comunitarios con recursos y acompañamiento.</li>
+                <li>Protocolo de mediación y derivación ante violencia/bullying.</li>
+                <li>Programación juvenil segura con referentes comunitarios.</li>
+              </ul>
+            </div>
+
+            <div class="flowcol">
+              <h3>Podemos influir <span class="badge warn">alianzas</span></h3>
+              <ul>
+                <li>Apoyos para gastos escolares con municipio/ONG/sector privado local.</li>
+                <li>Rutas seguras y seguridad vial en trayectos críticos.</li>
+                <li>Mejoras de conectividad y equipamiento mediante alianzas.</li>
+                <li>Acuerdos con empleadores locales para horarios compatibles.</li>
+                <li>Acompañamiento en trámites para acceso a bonos/becas.</li>
+              </ul>
+            </div>
+
+            <div class="flowcol">
+              <h3>Fuera de control <span class="badge bad">condiciones externas</span></h3>
+              <ul>
+                <li>Variaciones macroeconómicas que afectan ingresos familiares y empleo informal.</li>
+                <li>Movilidad residencial y migración interna que interrumpe continuidad escolar.</li>
+                <li>Dinámicas externas de violencia o conflictividad territorial.</li>
+                <li>Cambios presupuestarios o normativos de alcance nacional.</li>
+              </ul>
+            </div>
+          </div>
+
+          <details id="flujograma-matriz" open>
+            <summary>Matriz de implementación (modelo mínimo)</summary>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Acción</th>
+                  <th>Zona</th>
+                  <th>Responsable líder</th>
+                  <th>Aliados</th>
+                  <th>Producto verificable</th>
+                  <th>Frecuencia / plazo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Sistema de alerta temprana</td>
+                  <td><span class="badge good">Control</span></td>
+                  <td>Dirección escolar</td>
+                  <td>Docentes, junta vecinal</td>
+                  <td>Registro semanal + listado de casos + actas de contacto</td>
+                  <td>Semanal</td>
+                </tr>
+                <tr>
+                  <td>Tutorías focalizadas</td>
+                  <td><span class="badge good">Control</span></td>
+                  <td>Docentes</td>
+                  <td>Voluntariado/aliados</td>
+                  <td>Plan de tutorías + asistencia + mejora en evaluaciones</td>
+                  <td>Semanal</td>
+                </tr>
+                <tr>
+                  <td>Apoyos para gastos escolares</td>
+                  <td><span class="badge warn">Influencia</span></td>
+                  <td>Junta vecinal</td>
+                  <td>Municipio, ONG</td>
+                  <td>Beneficiarios + entregas/desembolsos registrados</td>
+                  <td>Mensual / trimestral</td>
+                </tr>
+                <tr>
+                  <td>Monitoreo de movilidad residencial</td>
+                  <td><span class="badge bad">Externo</span></td>
+                  <td>Equipo de seguimiento</td>
+                  <td>Servicios sociales</td>
+                  <td>Reporte bimensual y alertas de variación</td>
+                  <td>Bimensual</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="note">
+              Si la matriz no se puede completar (responsable y producto), probablemente la acción es demasiado vaga o no tiene
+              compromiso real. Reformule.
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <div id="checklist" class="card" style="margin-top:18px;">
+        <div class="hd">
+          <div class="section-title">
+            <h2>7) Checklist final (calidad IAP)</h2>
+            <span class="badge">control de coherencia</span>
+          </div>
+        </div>
+        <div class="bd">
+          <div class="grid2">
+            <div class="callout">
+              <b>Coherencia lógica</b>
+              <ul>
+                <li>Jerarquía clara (indirectos/directos) en causas y efectos.</li>
+                <li>Conversión 1 a 1: causa→medio; efecto→fin.</li>
+                <li>Trazabilidad: <span class="mono">causa → medio → acción</span>.</li>
+              </ul>
+            </div>
+            <div class="callout">
+              <b>Calidad participativa</b>
+              <ul>
+                <li>Participaron actores relevantes (diversidad y no solo “autoridades”).</li>
+                <li>Quedó registro de acuerdos, disensos y nodos-hypótesis.</li>
+                <li>Las acciones tienen responsables reales y productos verificables.</li>
+              </ul>
+            </div>
+          </div>
+
+          <details>
+            <summary>Recomendaciones finales para la entrega</summary>
+            <ul>
+              <li>Incluya una breve descripción del taller (fecha, lugar, participantes y metodología de priorización).</li>
+              <li>Adjunte la tabla de conversión y la matriz de implementación: muestran rigor y facilitan evaluación.</li>
+              <li>Si un factor es importante pero externo, no lo fuerce como “causa”: trátelo como condición externa y defina monitoreo.</li>
+              <li>Evite el “árbol perfecto” y el “plan imposible”. Un buen trabajo IAP es ejecutable y aprendible: permite ajustar el ciclo.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="footer">
+    Documento HTML auto-contenido. Diagramas en SVG para claridad. Secciones de orientación pensadas para trabajo participativo en IAP.
+  </div>
+
+  <script>
+    (function(){
+      const nav = document.getElementById('nav');
+      if(!nav) return;
+      const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
+      const targets = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+      const obs = new IntersectionObserver((entries)=>{
+        entries.forEach(en=>{
+          if(en.isIntersecting){
+            links.forEach(l => { l.style.background='transparent'; l.style.borderColor='transparent'; });
+            const href = '#' + en.target.id;
+            const active = links.find(l => l.getAttribute('href') === href);
+            if(active){
+              active.style.background = 'rgba(116,167,255,.10)';
+              active.style.borderColor = 'rgba(116,167,255,.25)';
+              active.style.textDecoration = 'none';
+            }
+          }
+        })
+      }, {rootMargin: '-35% 0px -60% 0px', threshold: 0.01});
+      targets.forEach(t => obs.observe(t));
+    })();
+  </script>
+</body>
+</html>
